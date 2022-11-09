@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Mermi
   - Enemy2
+  - Candy1
+  - Qilinc
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Candy
   - 
   - 
   - 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,18 +31,46 @@ public class Enemy : MonoBehaviour
     {
         agent.destination = player.transform.position;
         agent.speed = 5f;
-        agent.stoppingDistance = 5f;
+        //agent.stoppingDistance = 5f;
         count = Counter;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")&&transform.CompareTag("Enemy2"))
+        if (other.CompareTag("Qilinc") && transform.CompareTag("Enemy"))
         {
-            Counter++;
+            Transform candy = gameObject.transform.GetChild(1);
+            candy.parent = null;
+            candy.gameObject.layer = 6;
+            candy.GetComponent<Rigidbody>().isKinematic = false;
+
+            transform.DOShakeScale(0.2f, 1.3f).OnComplete(() =>
+            {
+                Destroy(gameObject);
+            });
+
+            
+        }
+        if (other.CompareTag("Qilinc")&&transform.CompareTag("Enemy2"))
+        {
+            transform.DOShakeScale(0.2f, 1.3f).OnComplete(() =>
+            {
+                Counter++;
+                transform.DOScale(1,0.2f);
+                
+            });
+            
         }
         if (Counter>1)
         {
-            Destroy(gameObject);
+            Transform candy = gameObject.transform.GetChild(1);
+            candy.parent = null;
+            candy.gameObject.layer = 6;
+            candy.GetComponent<Rigidbody>().isKinematic = false;
+            transform.DOShakeScale(0.2f, 1.3f).OnComplete(() =>
+            {
+                Destroy(gameObject);
+            });
+            
         }
 
 
